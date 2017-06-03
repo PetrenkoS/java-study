@@ -23,9 +23,9 @@ public class ApplicationManager {
 
 
     public void init() {
-       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-       wd.get("http://localhost/addressbook/");
+        wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
@@ -51,12 +51,12 @@ public class ApplicationManager {
     }
 
     public void login(String username, String password) {
-       wd.findElement(By.name("user")).click();
+        wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.id("LoginForm")).click();
         wd.findElement(By.name("pass")).click();
-       wd.findElement(By.name("pass")).clear();
+        wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
@@ -64,4 +64,5 @@ public class ApplicationManager {
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
+}
 }
