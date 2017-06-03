@@ -14,13 +14,12 @@ public class ApplicationManager {
 
     FirefoxDriver wd;
 
-    public ApplicationManager app = new ApplicationManager();
+
     public ContactHelper contactHelper;
     public SessionHelper sessionHelper;
     public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
-
-
+    public ApplicationManager app;
 
 
     public void init() {
