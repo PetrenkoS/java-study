@@ -14,12 +14,13 @@ public class ApplicationManager {
 
     FirefoxDriver wd;
 
-
+    public ApplicationManager app = new ApplicationManager();
     public ContactHelper contactHelper;
     public SessionHelper sessionHelper;
     public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
-    public ApplicationManager app;
+
+
 
 
     public void init() {
@@ -64,5 +65,15 @@ public class ApplicationManager {
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
-}
+
+
+    public void gotoHomePage() {
+        wd.findElement(By.linkText("home page")).click();
+
+
+    }
+
+    public void submitContactModification() {
+        wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
+    }
 }

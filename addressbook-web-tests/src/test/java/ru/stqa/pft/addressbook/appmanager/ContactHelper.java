@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
  */
 public class ContactHelper extends HelperBase {
 
-    private FirefoxDriver wd;
+    public FirefoxDriver wd;
 
     public ContactHelper(FirefoxDriver wd) {
         super(wd);
@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void deleteSelectedContacts() {
-        wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     }
 
     public void selectContact() {
@@ -53,5 +53,11 @@ public class ContactHelper extends HelperBase {
      wd.findElement(By.id("16")).click();
  }
     }
+
+    public void initContactModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img))"));
+    }
+
+
 }
 
