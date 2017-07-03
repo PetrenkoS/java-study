@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -9,9 +10,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
  */
 public class ContactHelper extends HelperBase {
 
-    public FirefoxDriver wd;
-
-    public ContactHelper(FirefoxDriver wd) {
+    public ContactHelper(WebDriver wd) {
         super(wd);
     }
 
@@ -43,21 +42,4 @@ public class ContactHelper extends HelperBase {
     public void goToAddContact() {
         clickContact(By.linkText("add new"));
     }
-
-    public void deleteSelectedContacts() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-    }
-
-    public void selectContact() {
-        if (!wd.findElement(By.id("16")).isSelected()) {
-     wd.findElement(By.id("16")).click();
- }
-    }
-
-    public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img))"));
-    }
-
-
 }
-

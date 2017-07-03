@@ -1,9 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,19 +15,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
 
-    FirefoxDriver wd;
+    WebDriver wd;
 
-    public ApplicationManager app = new ApplicationManager();
+
     public ContactHelper contactHelper;
     public SessionHelper sessionHelper;
     public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
-
-
+    public ApplicationManager app;
 
 
     public void init() {
-        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        String browser = BrowserType.FIREFOX;
+        if (browser == BrowserType.FIREFOX) {
+            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        } else if (browser == BrowserType.CHROME) {
+            wd = new ChromeDriver();
+        } else if (browser == BrowserType.IE) {
+            wd = new InternetExplorerDriver();
+        }
+
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
@@ -33,7 +43,6 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }
-
 
 
     public void fillGroupForm(String test1, String test2, String test3) {
@@ -64,16 +73,5 @@ public class ApplicationManager {
 
     public ContactHelper getContactHelper() {
         return contactHelper;
-    }
-
-
-    public void gotoHomePage() {
-        wd.findElement(By.linkText("home page")).click();
-
-
-    }
-
-    public void submitContactModification() {
-        wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
     }
 }
